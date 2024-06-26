@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"kghbln",
+			"mwjames"
+		]
+	},
+	"sfs-desc": "Allows to generate a select field in a form whose values are retrieved from a query"
+}

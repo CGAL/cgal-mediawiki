@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  mediawiki:
+    image: mediawiki:lts
+    restart: always
+    environment:
+      - MEDIAWIKI_SITE_NAME=My MediaWiki
+      - MEDIAWIKI_DB_TYPE=mysql
+      - MEDIAWIKI_DB_HOST=db
+      - MEDIAWIKI_DB_NAME=mediawiki
+      - MEDIAWIKI_DB_USER=mediawiki
+      - MEDIAWIKI_DB_PASSWORD=mediawiki
+    volumes:
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./composer.json:/var/www/html/composer.json
+      - ./composer.lock:/var/www/html/composer.lock
+    links:
+      - db:mysql
+    ports:
+      - "8080:80"
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_DATABASE=mediawiki
+      - MYSQL_USER=mediawiki
+      - MYSQL_PASSWORD=mediawiki
+      - MYSQL_ROOT_PASSWORD=root

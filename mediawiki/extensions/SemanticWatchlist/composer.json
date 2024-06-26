@@ -1,0 +1,48 @@
+{
+	"name": "mediawiki/semantic-watchlist",
+	"type": "mediawiki-extension",
+	"description": "A Semantic MediaWiki extension that allows users to use a watchlist for semantic properties.",
+	"keywords": [
+		"SMW",
+		"Semantic MediaWiki",
+		"Wiki",
+		"MediaWiki"
+	],
+	"homepage": "https://www.semantic-mediawiki.org/wiki/Extension:SemanticWatchlist",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com"
+		}
+	],
+	"support": {
+		"email": "semediawiki-user@lists.sourceforge.net",
+		"issues": "https://github.com/SemanticMediaWiki/SemanticWatchlist/issues",
+		"irc": "irc://irc.freenode.net/semantic-mediawiki",
+		"forum": "https://www.semantic-mediawiki.org/wiki/semantic-mediawiki.org_talk:Community_portal",
+		"wiki": "https://www.semantic-mediawiki.org/wiki/Extension:SemanticWatchlist",
+		"source": "https://github.com/SemanticMediaWiki/SemanticWatchlist"
+	},
+	"require": {
+		"php": ">=7.3",
+		"composer/installers": "1.*,>=1.0.1",
+		"mediawiki/semantic-media-wiki": "~3.0|~4.0"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.3.x-dev"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"SWL\\": "src/"
+		}
+	},
+	"config": {
+		"process-timeout": 0
+	},
+	"scripts": {
+		"phpunit": "php ../../tests/phpunit/phpunit.php -c phpunit.xml.dist"
+	}
+}
