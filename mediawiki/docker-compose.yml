@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mediawiki:
-    image: mediawiki:lts
+    image: mediawiki:1.39
     restart: always
     environment:
       - MEDIAWIKI_SITE_NAME=My MediaWiki
@@ -14,6 +14,8 @@ services:
     volumes:
       - ./LocalSettings.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
+      - ./extensions:/var/www/html/extensions
+      - ./vendor:/var/www/html/vendor
       - ./composer.lock:/var/www/html/composer.lock
     links:
       - db:mysql
