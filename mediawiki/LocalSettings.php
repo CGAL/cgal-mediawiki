@@ -137,3 +137,13 @@ wfLoadSkin( 'Vector' );
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'SemanticMediaWiki' );
 enableSemantics( '' );
+wfLoadExtension( 'PageForms' );
+wfLoadExtension( 'SemanticFormsSelect' );
+wfLoadExtension( 'SemanticWatchlist' );
+
+wfLoadExtension( 'ConfirmAccount' );
+$wgGroupPermissions['*']['createaccount'] = false;
+$wgGroupPermissions['bureaucrat']['createaccount'] = true;
+
+wfLoadExtension( 'Interwiki' );
+$wgGroupPermissions['sysop']['interwiki'] = true;
