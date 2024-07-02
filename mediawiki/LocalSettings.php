@@ -138,7 +138,6 @@ wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'SemanticMediaWiki' );
 enableSemantics( '' );
 wfLoadExtension( 'PageForms' );
-wfLoadExtension( 'SemanticFormsSelect' );
 wfLoadExtension( 'SemanticWatchlist' );
 
 wfLoadExtension( 'ConfirmAccount' );
@@ -147,3 +146,14 @@ $wgGroupPermissions['bureaucrat']['createaccount'] = true;
 
 wfLoadExtension( 'Interwiki' );
 $wgGroupPermissions['sysop']['interwiki'] = true;
+
+wfLoadExtension( 'Renameuser' );
+wfLoadExtension( 'UserMerge' );
+require_once "$IP/extensions/BacktickCode/BacktickCode.php";
+wfLoadExtension( 'MagicNoCache' );
+wfLoadExtension( 'Math' );
+wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+wfLoadExtension( 'UrlGetParameters' );
+wfLoadExtension( 'DiscussionThreading' );
+wfLoadExtension( 'ParserFunctions' );
