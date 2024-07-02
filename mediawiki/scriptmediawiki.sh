@@ -1,17 +1,23 @@
-#!/bin/bash
+#!/bin/sh
 
-sed -i 's/#//g' docker-compose.yml
+BRANCH="REL1_39"
+REPO_BASE="https://gerrit-replica.wikimedia.org/r/mediawiki/extensions"
+EXTENSIONS="VisualEditor PageForms ConfirmAccount Interwiki Renameuser UserMerge MagicNoCache Math ParserFunctions SyntaxHighlight_GeSHi UrlGetParameters DiscussionThreading"
 
 composer install
-composer update
+composer update --no-dev
 
-docker build -t my-mediawiki .
+mkdir -p extensions
 
-#cat AddLocalSettings.txt >> LocalSettings.php
+cd extensions
 
-sed -i 's/mediawiki:lts/my-mediawiki/g' docker-compose.yml
+for EXTENSION in $EXTENSIONS; do
+    if [ -d "$EXTENSION" ]; then
+        rm -rf "$EXTENSION"
+    fi
+done
 
-docker-compose up -d
+for EXTENSION in $EXTENSIONS; do
+    git clone -b "$BRANCH" "$REPO_BASE/$EXTENSION"
+done
 
-container_name=$(docker ps -a | grep "mediawiki-1$" | awk '{print $NF}')
-docker exec -ti $container_name php /var/www/html/maintenance/update.php
