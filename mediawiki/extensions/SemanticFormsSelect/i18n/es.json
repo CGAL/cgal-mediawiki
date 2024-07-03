@@ -1,8 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Fitoschido"
-		]
-	},
-	"sfs-desc": "Permite generar campos de selección en formularios, cuyos valores se recuperan de una consulta"
-}
