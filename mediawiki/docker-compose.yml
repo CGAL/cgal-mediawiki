@@ -2,8 +2,10 @@ version: '3'
 
 services:
   mediawiki:
-    image: mediawiki:1.39
-    restart: always
+    build:
+      context: .
+    command: /usr/local/bin/scriptmediawiki.sh
+    restart: "no"
     environment:
       - MEDIAWIKI_SITE_NAME=My MediaWiki
       - MEDIAWIKI_DB_TYPE=mysql
@@ -14,9 +16,6 @@ services:
     volumes:
       - ./LocalSettings.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
-      - ./extensions:/var/www/html/extensions
-      - ./vendor:/var/www/html/vendor
-      - ./composer.lock:/var/www/html/composer.lock
     links:
       - db:mysql
     ports:
