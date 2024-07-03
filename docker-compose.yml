@@ -4,7 +4,6 @@ services:
   mediawiki:
     build:
       context: .
-    command: /usr/local/bin/scriptmediawiki.sh
     restart: "no"
     environment:
       - MEDIAWIKI_SITE_NAME=My MediaWiki

@@ -23,4 +23,4 @@ for EXTENSION in $EXTENSIONS; do
     git clone -b "$BRANCH" "$REPO_BASE/$EXTENSION"
 done
 
-apache2-foreground
+
