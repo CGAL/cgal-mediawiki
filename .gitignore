@@ -1,0 +1,6 @@
+# .gitignore
+.env
+
+db-data/
+db-init/
+caddy-data/

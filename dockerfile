@@ -13,6 +13,5 @@ COPY scriptmediawiki.sh /usr/local/bin/scriptmediawiki.sh
 COPY composer.json /var/www/html/composer.json
 COPY extensions/BacktickCode /var/www/html/extensions/BacktickCode
 RUN chmod +x /usr/local/bin/scriptmediawiki.sh
-RUN /usr/local/bin/scriptmediawiki.sh
 
-CMD composer install && apache2-foreground
+ENTRYPOINT ["/usr/local/bin/scriptmediawiki.sh"]

@@ -6,9 +6,6 @@ EXTENSIONS="VisualEditor PageForms ConfirmAccount Interwiki Renameuser UserMerge
 
 cd /var/www/html
 
-composer install
-composer update --no-dev
-
 mkdir -p extensions
 
 cd extensions
@@ -23,4 +20,10 @@ for EXTENSION in $EXTENSIONS; do
     git clone -b "$BRANCH" "$REPO_BASE/$EXTENSION"
 done
 
+cd ../
+composer install
+composer update --no-dev
 
+php maintenance/update.php --quick
+
+apache2-foreground
