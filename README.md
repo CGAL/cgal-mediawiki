@@ -7,20 +7,17 @@ git clone https://github.com/SaillantNicolas/cgalmediawiki.git
 cd cgalmediawiki
 ```
 
-Build and start the Docker containers:
+Copy a dump of the database in `db-init/`.
 
-```
-docker-compose up --build
-```
+Then build and start the Docker containers:
 
-Once the containers are up and running, import the MediaWiki database:
-
+If the dump of the database is from a Mediawiki version older than 1.31, you need to update the database schema:
 ```
-docker exec -i <DB_CONTAINER_NAME> mariadb -u <DB_USER> -p<DB_PASSWORD> <DB_NAME> < <Dump.sql>
+docker-compose --profile update up --build
+docker-compose down
 ```
 
-Run the MediaWiki maintenance script to update the database:
-
+Otherwise, you can start the containers directly:
 ```
-docker exec -ti <MEDIAWIKI_CONTAINER_NAME> php /var/www/html/maintenance/update.php
+docker-compose up -d
 ```

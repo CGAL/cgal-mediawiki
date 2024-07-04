@@ -5,18 +5,17 @@ services:
     build:
       context: .
     restart: always
-    environment:
+    volumes: &volumes_mediawiki
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./composer.json:/var/www/html/composer.json
+    environment: &env_mediawiki
+      - MEDIAWIKI_SITE_SERVER=${MW_SITE_FQDN}
       - MEDIAWIKI_SITE_NAME=My MediaWiki
       - MEDIAWIKI_DB_TYPE=mysql
       - MEDIAWIKI_DB_HOST=db
       - MEDIAWIKI_DB_NAME=mediawiki
       - MEDIAWIKI_DB_USER=mediawiki
       - MEDIAWIKI_DB_PASSWORD=mediawiki
-    volumes:
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
-      - ./composer.json:/var/www/html/composer.json
-    links:
-      - db:mysql
     ports:
       - "8080:80"
     depends_on:
@@ -33,7 +32,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./db-init:/docker-entrypoint-initdb.d
-      - ./db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 20s
@@ -53,10 +52,28 @@ services:
       - "443:443"
       - "80:80"
     volumes:
-      - ./caddy-data:/data
+      - caddy-data:/data
       - ./config/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
       - mediawiki
+
+  mediawiki_update:
+    build:
+      context: .
+      args:
+        - MW_VERSION=1.31
+        - UPDATE=1
+    profiles:
+      - update
+    environment: *env_mediawiki
+    volumes:
+      - ./update-context/LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./update-context/composer.json:/var/www/html/composer.json
+
+    entrypoint: [ "php", "maintenance/update.php", "--quick" ]
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   db-data:
