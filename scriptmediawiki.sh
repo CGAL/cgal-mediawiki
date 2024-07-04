@@ -21,9 +21,14 @@ for EXTENSION in $EXTENSIONS; do
 done
 
 cd ../
+
 composer install
 composer update --no-dev
 
 php maintenance/update.php --quick
+
+cd extensions/VisualEditor
+git submodule update --init
+cd /var/www/html
 
 apache2-foreground
