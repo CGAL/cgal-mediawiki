@@ -1,0 +1,14 @@
+[Unit]
+Requires=db.service
+After=db.service
+
+[Container]
+Environment=MEDIAWIKI_SITE_SERVER=${MW_SITE_FQDN} "MEDIAWIKI_SITE_NAME=My MediaWiki" MEDIAWIKI_DB_TYPE=mysql MEDIAWIKI_DB_HOST=db MEDIAWIKI_DB_NAME=mediawiki MEDIAWIKI_DB_USER=mediawiki MEDIAWIKI_DB_PASSWORD=mediawiki
+Image=mediawiki:latest
+PublishPort=8080:80
+Volume=~/cgalmediawiki/LocalSettings.php:/var/www/html/LocalSettings.php
+Volume=~/cgalmediawiki/composer.json:/var/www/html/composer.json
+
+[Service]
+Restart=always
+
