@@ -3,14 +3,17 @@ Requires=mediawiki.service
 After=mediawiki.service
 
 [Container]
-Entrypoint=caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+ContainerName=caddy
+Entrypoint=["/usr/bin/caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
 Environment=MW_SITE_FQDN=${MW_SITE_FQDN} HTTPS_PORT=${HTTPS_PORT} CADDY_BASIC_AUTH_PASS=${CADDY_BASIC_AUTH_PASS}
 Image=docker.io/library/caddy:2.8-alpine
-PublishPort=443:443
-PublishPort=80:80
-Volume=~/cgalmediawikicaddy-data:/data
-Volume=~/cgalmediawiki/config/Caddyfile:/etc/caddy/Caddyfile
+PublishPort=8443:8443
+PublishPort=8880:8880
+Volume=${HOME}/caddy-data:/data:Z
+Volume=${HOME}/cgalmediawiki/config/Caddyfile:/etc/caddy/Caddyfile:Z
+Network=mediawiki
 
 [Service]
+EnvironmentFile=/home/nsaillant/cgalmediawiki/.env
 Restart=always
 

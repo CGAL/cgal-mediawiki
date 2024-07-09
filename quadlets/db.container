@@ -1,4 +1,5 @@
 [Container]
+ContainerName=db
 Environment=MYSQL_DATABASE=mediawiki MYSQL_USER=mediawiki MYSQL_PASSWORD=mediawiki MYSQL_ROOT_PASSWORD=root
 HealthCmd=["healthcheck.sh","--connect","--innodb_initialized"]
 HealthInterval=20s
@@ -6,8 +7,9 @@ HealthRetries=3
 HealthStartPeriod=40s
 HealthTimeout=10s
 Image=docker.io/library/mariadb:latest
-Volume=~/cgalmediawiki/db-init:/docker-entrypoint-initdb.d
-Volume=~/cgalmediawiki/db-data:/var/lib/mysql
+Volume=${HOME}/cgalmediawiki/db-init:/docker-entrypoint-initdb.d:Z
+Volume=${HOME}/db-data:/var/lib/mysql:Z
+Network=mediawiki
 
 [Service]
 Restart=always

@@ -5,6 +5,7 @@
   reverse_proxy mediawiki:80
 }
 
-{$MW_SITE_FQDN}:80 {
+#{$MW_SITE_FQDN}:80 {
+{$MW_SITE_FQDN}:8880 {
   redir https://{$MW_SITE_FQDN}:{$HTTPS_PORT}{uri} permanent
 }

@@ -29,7 +29,8 @@ $wgSitename = "CGALwiki";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "https://ovh2024.geometryfactory.com";
+#$wgServer = "https://ovh2024.geometryfactory.com";
+$wgServer = "https://ovh2024.geometryfactory.com:8443";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
