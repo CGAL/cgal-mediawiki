@@ -8,7 +8,7 @@ HealthStartPeriod=40s
 HealthTimeout=10s
 Image=docker.io/library/mariadb:latest
 Volume=${HOME}/cgalmediawiki/db-init:/docker-entrypoint-initdb.d:Z
-Volume=${HOME}/db-data:/var/lib/mysql:Z
+Volume=cgalmediawiki_db-data:/var/lib/mysql:Z
 Network=mediawiki
 
 [Service]
