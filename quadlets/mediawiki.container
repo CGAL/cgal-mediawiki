@@ -9,6 +9,7 @@ Image=mediawiki:latest
 PublishPort=8080:80
 Volume=${HOME}/cgalmediawiki/LocalSettings.php:/var/www/html/LocalSettings.php:Z
 Volume=${HOME}/cgalmediawiki/composer.json:/var/www/html/composer.json:Z
+Volume=${HOME}/cgalmediawiki/images:/var/www/html/images:Z
 Network=mediawiki
 
 [Service]
