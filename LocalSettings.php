@@ -37,8 +37,10 @@ $wgResourceBasePath = $wgScriptPath;
 ## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 $wgLogos = [
-	'1x' => "$wgResourceBasePath/resources/assets/change-your-logo.svg",
-	'icon' => "$wgResourceBasePath/resources/assets/change-your-logo.svg",
+	'1x' => "https://cgal.geometryfactory.com/img/cgal-dev-wiki-logo2.png",  # CGAL-EDIT
+	'icon' => "https://cgal.geometryfactory.com/img/cgal-dev-wiki-logo2.png",  # CGAL-EDIT
+#	'1x' => "$wgResourceBasePath/resources/assets/change-your-logo.svg",
+#	'icon' => "$wgResourceBasePath/resources/assets/change-your-logo.svg",
 ];
 
 ## UPO means: this is also a user preference option
@@ -52,6 +54,7 @@ $wgPasswordSenderName = "CGAL Developers Wiki Administrator"; # CGAL-EDIT
 
 ## There are many more options for fine tuning available see
 ## /includes/DefaultSettings.php
+
 ## UPO means: this is also a user preference option
 
 ## https://www.mediawiki.org/wiki/Manual:Configuration_settings#Email_notification_(Enotif)_settings
