@@ -1,8 +1,7 @@
 # .gitignore
-.env
-
 db-data/
 db-init/
 caddy-data/
 images/
 composer.override.yml
+production-dir/secrtets.env

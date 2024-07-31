@@ -1,11 +1,12 @@
-{$MW_SITE_FQDN}:{$HTTPS_PORT} {
-  basic_auth * {
-    member1 {$CADDY_BASIC_AUTH_PASS}
-  }
-  reverse_proxy mediawiki:80
+{
+  debug
+  http_port {$HTTP_PORT}
+  https_port {$HTTPS_PORT}
 }
 
-#{$MW_SITE_FQDN}:80 {
-{$MW_SITE_FQDN}:8880 {
-  redir https://{$MW_SITE_FQDN}:{$HTTPS_PORT}{uri} permanent
+{$MW_SITE_FQDN} {
+  basic_auth * {
+    member1 {$CGAL_MEMBERS_PASSWORD}
+  }
+  reverse_proxy mediawiki:80
 }

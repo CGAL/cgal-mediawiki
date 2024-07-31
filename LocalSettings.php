@@ -26,10 +26,18 @@ $wgSitename = "CGAL develop wiki"; # CGAL-EDIT
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
-$wgScriptPath = "";
+$wgScriptPath       = "/CGAL/Members/w";
+
+# http://www.mediawiki.org/wiki/Manual:$wgUsePathInfo
+# Whether to use 'pretty' URLs, e.g. index.php/Page_title
+$wgUsePathInfo = true;
+## The URL base path to the directory containing the wiki;
+## defaults for all runtime URL paths are based off of this.
+# Virtual path. This directory MUST be different from the one used in $wgScriptPath
+$wgArticlePath = '/CGAL/Members/wiki/$1';
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "//" . getenv('SERVER_NAME') . ":" . getenv('SERVER_PORT'); # CGAL-EDIT
+$wgServer = getenv('MEDIAWIKI_SITE_SERVER'); # CGAL-EDIT
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -88,6 +96,7 @@ $wgMemCachedServers = [];
 $wgEnableUploads = true;
 $wgUseImageMagick = true;
 $wgImageMagickConvertCommand = "/usr/bin/convert";
+$wgUploadPath       = "/CGAL/Members/wiki-images";
 
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
 $wgUseInstantCommons = false;
@@ -298,9 +307,11 @@ $wgAutoWelcomeNewUsers = true;
 $wgUseRealNamesOnly = true;
 $wgAutoUserBioText = "(This text was send by the user for his/her account creation request.)";
 $wgConfirmAccountContact = "info@cgal.org";
-$wgAllowRealName = true;
-$wgAccountRequestToS = false;
-$wgWhitelistRead = array('Special:RequestAccount');
+$wgWhitelistRead = [
+	'Special:RequestAccount',
+	'MediaWiki:Common.css',
+	'MediaWiki:Common.js'
+	];
 $wgGroupPermissions['cgaleditor']['confirmaccount'] = true;
 $wgGroupPermissions['cgaleditor']['confirmaccount-notify'] = true;
 $wgAllowAccountRequestFiles = false;

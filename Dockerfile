@@ -1,6 +1,6 @@
 ARG MW_VERSION=1.39
 
-FROM mediawiki:${MW_VERSION}
+FROM docker.io/library/mediawiki:${MW_VERSION}
 ARG MW_VERSION
 ENV MW_VERSION=${MW_VERSION}
 
