@@ -1,0 +1,25 @@
+[Unit]
+Requires=cgalmediawiki-mediawiki.service
+After=cgalmediawiki-mediawiki.service
+
+[Container]
+ContainerName=cgalmediawiki_caddy
+Image=docker.io/library/caddy:2.8-alpine
+Entrypoint=["/usr/bin/caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+EnvironmentFile=/srv/CGAL/cgal-mediawiki/production.env
+Secret=CGAL_MEMBERS_PASSWORD,type=env
+PublishPort=51.75.82.36:443:443/tcp
+PublishPort=51.75.82.36:443:443/udp
+PublishPort=51.75.82.36:80:80/tcp
+Volume=cgalmediawiki_caddy-data:/data:Z
+Volume=/srv/CGAL/cgal-mediawiki/config/Caddyfile:/etc/caddy/Caddyfile:ro,z
+Network=cgalmediawiki_default
+
+[Service]
+Restart=on-failure
+# Extend Timeout to allow time to pull the image
+TimeoutStartSec=900
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target

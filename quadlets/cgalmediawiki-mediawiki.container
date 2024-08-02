@@ -1,0 +1,24 @@
+[Unit]
+Requires=cgalmediawiki-db.service
+After=cgalmediawiki-db.service
+
+[Container]
+ContainerName=cgalmediawiki_mediawiki
+EnvironmentFile=/srv/CGAL/cgal-mediawiki/production.env
+Image=localhost/cgalmediawiki_mediawiki:latest
+PublishPort=127.0.0.1:8081:80/tcp
+Volume=/srv/CGAL/cgal-mediawiki/LocalSettings.php:/var/www/html/LocalSettings.php:ro,z
+Volume=/srv/CGAL/cgal-mediawiki/config/cgal_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf:ro,z
+Volume=/srv/CGAL/cgal-mediawiki/composer.json:/var/www/html/composer.json:z
+Volume=cgalmediawiki_images:/var/www/html/images:z
+Network=cgalmediawiki_default
+PodmanArgs=--network-alias=mediawiki
+
+[Service]
+Restart=on-failure
+# Extend Timeout to allow time to pull the image
+TimeoutStartSec=900
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target

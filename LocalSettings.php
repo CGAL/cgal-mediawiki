@@ -154,11 +154,10 @@ $wgDefaultSkin = "vector-2022"; # CGAL-EDIT
 
 # Enabled skins.
 # The following skins were automatically enabled:
-wfLoadSkin( 'MinervaNeue' );
-wfLoadSkin( 'MonoBook' );
-wfLoadSkin( 'Timeless' );
+#wfLoadSkin( 'MinervaNeue' ); # CGAL-EDIT
+#wfLoadSkin( 'MonoBook' ); # CGAL-EDIT
+#wfLoadSkin( 'Timeless' ); # CGAL-EDIT
 wfLoadSkin( 'Vector' );
-
 
 # Enabled extensions. Most of the extensions are enabled by adding
 # wfLoadExtension( 'ExtensionName' );

@@ -5,7 +5,7 @@
 }
 
 {$MW_SITE_FQDN} {
-  basic_auth * {
+  basic_auth * bcrypt "CGAL Members" {
     member1 {$CGAL_MEMBERS_PASSWORD}
   }
   reverse_proxy mediawiki:80

@@ -1,0 +1,22 @@
+[Container]
+ContainerName=cgalmediawiki_db
+Image=docker.io/library/mariadb:latest
+EnvironmentFile=/srv/CGAL/cgal-mediawiki/production.env
+HealthCmd=["healthcheck.sh","--connect","--innodb_initialized"]
+HealthInterval=20s
+HealthRetries=3
+HealthStartPeriod=40s
+HealthTimeout=10s
+Notify=healthy
+Volume=cgalmediawiki_db-data:/var/lib/mysql:Z
+Network=cgalmediawiki_default
+PodmanArgs=--network-alias=db
+
+[Service]
+Restart=on-failure
+# Extend Timeout to allow time to pull the image
+TimeoutStartSec=900
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
