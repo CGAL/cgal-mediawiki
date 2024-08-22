@@ -19,7 +19,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = "CGAL develop wiki"; # CGAL-EDIT
+$wgSitename = "CGAL developers wiki"; # CGAL-EDIT
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -340,6 +340,6 @@ $mwgQConceptCaching = CONCEPT_CACHE_NONE;
 $wgJobRunRate = 10;
 
 
-#DismissableSiteNotice Configuration
+# https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice
 $wgMajorSiteNoticeID = 1;
 $wgDismissableSiteNoticeForAnons = false;
