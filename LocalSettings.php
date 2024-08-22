@@ -198,6 +198,7 @@ wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 wfLoadExtension( 'UrlGetParameters' );
 wfLoadExtension( 'DiscussionThreading' );
 wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'DismissableSiteNotice' );
 
 # See ConfirmAccount extension below
 #$wgGroupPermissions['*'    ]['createaccount']   = true;
@@ -337,3 +338,8 @@ $mwgQConceptCaching = CONCEPT_CACHE_NONE;
 
 # http://www.mediawiki.org/wiki/Manual:Job_queue#Updating_links_tables_when_a_template_changes
 $wgJobRunRate = 10;
+
+
+#DismissableSiteNotice Configuration
+$wgMajorSiteNoticeID = 1;
+$wgDismissableSiteNoticeForAnons = false;
