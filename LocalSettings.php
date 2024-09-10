@@ -199,6 +199,9 @@ wfLoadExtension( 'UrlGetParameters' );
 wfLoadExtension( 'DiscussionThreading' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'DismissableSiteNotice' );
+wfLoadExtension( 'WikiMarkdown' );
+$wgAllowMarkdownExtra = true; // allows usage of Parsedown Extra
+$wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
 
 # See ConfirmAccount extension below
 #$wgGroupPermissions['*'    ]['createaccount']   = true;
