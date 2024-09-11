@@ -201,7 +201,7 @@ wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'DismissableSiteNotice' );
 wfLoadExtension( 'WikiMarkdown' );
 $wgAllowMarkdownExtra = true; // allows usage of Parsedown Extra
-$wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
+#$wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
 
 # See ConfirmAccount extension below
 #$wgGroupPermissions['*'    ]['createaccount']   = true;
@@ -283,7 +283,7 @@ $wgEnableScaryTranscluding = true;
  * may contain private data. 
  */
 # $wgDebugLogFile         = '/tmp/wiki-log';
-
+$wgShowExceptionDetails = true;
 /** Make users use autonumbering by default */
 $wgDefaultUserOptions ['numberheadings'] = 1;
 
