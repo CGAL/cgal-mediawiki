@@ -1,5 +1,6 @@
 {
     "name": "cgal/cgalwiki",
+    "version": "1.0.1",
     "type": "wiki",
     "require": {
         "mediawiki/semantic-media-wiki": "^4.1",
@@ -13,9 +14,7 @@
         "wikimedia/normalized-exception": "^1.0",
         "wikimedia/at-ease": "^2.1",
         "mediawiki/core": "^1.39",
-        "wikimedia/parsoid": "^0.16.0",
-        "benjaminhoegh/parsedown-extended": "^1.3",
-        "erusev/parsedown": "^1.7"
+        "wikimedia/parsoid": "^0.16.0"
     },
     "autoload": {
         "psr-4": {
@@ -28,6 +27,13 @@
         "allow-plugins": {
             "composer/installers": true,
             "wikimedia/composer-merge-plugin": true
+        }
+    },
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "extensions/WikiMarkdown/composer.json"
+            ]
         }
     }
 }

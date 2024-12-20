@@ -23,6 +23,7 @@ services:
   mediawiki:
     build:
       context: .
+    image: localhost/cgalmediawiki_mediawiki:latest
     profiles:
       - production
       - test
