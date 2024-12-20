@@ -9,7 +9,6 @@ x-cgal-env: &cgal-env
   MEDIAWIKI_SITE_NAME: My MediaWiki
   MEDIAWIKI_DB_TYPE: mysql
   MEDIAWIKI_DB_HOST: db
-  MEDIAWIKI_DB_NAME: mediawiki
   MEDIAWIKI_DB_USER: mediawiki
   MEDIAWIKI_DB_PASSWORD: mediawiki
   MYSQL_DATABASE: mediawiki
@@ -29,13 +28,32 @@ services:
       - test
     restart: always
     volumes: &volumes_mediawiki
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./LocalSettings-Members.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
       - ./images:/var/www/html/images
       - ./config/cgal_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
     environment: *cgal-env
     ports:
       - "${HTTP_TEST_PORT:-127.0.0.1:8080}:80"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  mediawiki-editors:
+    build:
+      context: .
+    profiles:
+      - production
+      - test
+    restart: always
+    volumes: &volumes_mediawiki
+      - ./LocalSettings-Editors.php:/var/www/html/LocalSettings.php
+      - ./composer.json:/var/www/html/composer.json
+      - ./images:/var/www/html/images
+      - ./config/cgal_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
+    environment: *cgal-env
+    ports:
+      - "${HTTP_TEST_PORT:-127.0.0.1:8081}:80"
     depends_on:
       db:
         condition: service_healthy
@@ -87,7 +105,25 @@ services:
       - update_db
     environment: *cgal-env
     volumes:
-      - ./update-context/LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./update-context/LocalSettings-Members.php:/var/www/html/LocalSettings.php
+      - ./update-context/composer.json:/var/www/html/composer.json
+
+    entrypoint: [ "php", "maintenance/update.php", "--quick" ]
+    depends_on:
+      db:
+        condition: service_healthy
+
+  update_db_editors:
+    build:
+      context: .
+      args:
+        - MW_VERSION=1.31
+        - UPDATE=1
+    profiles:
+      - update_db
+    environment: *cgal-env
+    volumes:
+      - ./update-context/LocalSettings-Editors.php:/var/www/html/LocalSettings.php
       - ./update-context/composer.json:/var/www/html/composer.json
 
     entrypoint: [ "php", "maintenance/update.php", "--quick" ]
