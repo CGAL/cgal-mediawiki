@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS mediawiki;
+CREATE DATABASE IF NOT EXISTS `mediawiki-editors`;
