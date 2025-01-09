@@ -20,7 +20,7 @@ x-cgal-env: &cgal-env
   HTTP_TEST_PORT: ${HTTP_TEST_PORT:-8080}
 
 services:
-  mediawiki:
+  mediawiki_members:
     build:
       context: .
     image: localhost/cgalmediawiki_mediawiki:latest
@@ -40,9 +40,10 @@ services:
       db:
         condition: service_healthy
 
-  mediawiki-editors:
+  mediawiki_editors:
     build:
       context: .
+    image: localhost/cgalmediawiki_mediawiki:latest
     profiles:
       - production
       - test
@@ -51,7 +52,7 @@ services:
       - ./LocalSettings-Editors.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
       - ./images:/var/www/html/images
-      - ./config/cgal_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
+      - ./config/cgal_editors_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
     environment: *cgal-env
     ports:
       - "${HTTP_TEST_PORT:-127.0.0.1:8081}:80"
@@ -94,7 +95,8 @@ services:
       - caddy-data:/data
       - ./config/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
-      - mediawiki
+      - mediawiki_members
+      - mediawiki_editors
 
   update_db:
     build:
