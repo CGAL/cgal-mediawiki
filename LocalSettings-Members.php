@@ -355,7 +355,11 @@ $wgMajorSiteNoticeID = 1;
 $wgDismissableSiteNoticeForAnons = false;
 
 
-include_once("/run/secrets/secrets.php");
+if (file_exists("/run/secrets/secrets.php")) {
+	include_once("/run/secrets/secrets.php");
+} else {
+	$CGAL_GEOMETRYFACTORY_COM_PASS = '';
+}
 
 $wgSMTP = [
 	'host'      => 'tls://ssl0.ovh.net', // could also be an IP address. Where the SMTP server is located. If using SSL or TLS, add the prefix "ssl://" or "tls://".
