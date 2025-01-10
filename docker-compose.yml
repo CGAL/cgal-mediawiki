@@ -55,7 +55,7 @@ services:
       - ./config/cgal_editors_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
     environment: *cgal-env
     ports:
-      - "${HTTP_TEST_PORT:-127.0.0.1:8081}:80"
+      - "${HTTP_TEST_PORT:-127.0.0.1:8082}:80"
     depends_on:
       db:
         condition: service_healthy
