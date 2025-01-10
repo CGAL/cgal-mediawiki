@@ -211,7 +211,7 @@ $wgGroupPermissions['*'    ]['createpage']      = false;
 $wgGroupPermissions['*'    ]['createtalk']      = false;
 $wgGroupPermissions['*'    ]['writeapi']         = false;
 
-$wgGroupPermissions['user' ]['createtalk']       = false;
+$wgGroupPermissions['user' ]['createtalk']       = true;
 $wgGroupPermissions['cgaleditor' ]['createtalk']       = true;
 
 /** This is a flag to determine whether or not to check file extensions on upload. */
@@ -260,8 +260,6 @@ $wgExtraNamespaces[NS_EDITORS_TALK] = "Editors_talk";
 # protect namespace
 $wgNamespaceProtection[NS_EDITORS] = Array("editeditors");
 $wgNamespacesWithSubpages[NS_EDITORS] = true;
-$wgGroupPermissions['*']['editeditors'] = false;
-$wgGroupPermissions['cgaleditor']['editeditors'] = true;
 $wgContentNamespaces[] = NS_EDITORS;
 
 $messages['group-cgaleditor'] = 'CGAL Editors';
@@ -292,14 +290,6 @@ $wgVerifyMimeType= false;
 
 $wgGroupPermissions['*']['interwiki'] = false;
 $wgGroupPermissions['sysop']['interwiki'] = true;
-
-# Bureaucrat settings
-$wgGroupPermissions['bureaucrat']['delete'] = true;
-$wgGroupPermissions['bureaucrat']['block'] = true;
-$wgGroupPermissions['bureaucrat']['editinterface'] = true;
-
-# Extension UserMerge
-$wgGroupPermissions['bureaucrat']['usermerge'] = true;
 
 # Disable reading by anonymous users
 $wgGroupPermissions['*']['read'] = false;
