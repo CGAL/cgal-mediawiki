@@ -19,7 +19,7 @@ case "$1" in
     ;;
 esac
 
-LOCAL_SETTINGS=${1:-"./LocalSettings.php"}
+LOCAL_SETTINGS=${1:-"./LocalSettings-Members.php"}
 if [ ! -f "$LOCAL_SETTINGS" ] && [ ! -c "$LOCAL_SETTINGS" ]; then
     echo "Error: File \"$LOCAL_SETTINGS\" not found."
     exit 1
@@ -31,7 +31,7 @@ fi
 
 case $OPERATION in
 freeze)
-    echo "Freezing wiki..."
+    echo "Freezing wiki $LOCAL_SETTINGS..."
     if ! grep -q "\$wgReadOnly" "$LOCAL_SETTINGS"; then
         echo "\$wgReadOnly = 'The wiki is currently in read-only mode for maintenance. This wiki will be back in a few minutes.';" >> "$LOCAL_SETTINGS"
         echo "Wiki frozen successfully."
@@ -42,7 +42,7 @@ freeze)
     fi
     ;;
 unfreeze)
-    echo "Unfreezing wiki..."
+    echo "Unfreezing wiki $LOCAL_SETTINGS..."
     if grep -q "\$wgReadOnly" "$LOCAL_SETTINGS"; then
         sed -i '/\$wgReadOnly/d' "$LOCAL_SETTINGS"
         echo "Wiki unfrozen successfully."

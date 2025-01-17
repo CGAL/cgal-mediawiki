@@ -1,2 +1,5 @@
 #!/bin/bash
-mariadb -u root -proot mediawiki < /docker-entrypoint-initdb.d/cgalwiki-dump.sql
+
+[ -f /db-dumps/cgalwiki-dump.sql ] || exit 0;
+
+mariadb -u root -proot mediawiki < /db-dumps/cgalwiki-dump.sql

@@ -14,13 +14,13 @@ Then build and start the Docker containers:
 If the dump of the database is from a Mediawiki version older than 1.31, you need to update the database schema:
 
 ```shell
-docker-compose run update_db
+docker-compose --profile update_db run update_db
 ```
 
 If you are updating the database schema for wiki editors, use the following command instead:
 
 ```shell
-docker-compose run update_db_editors
+docker-compose --profile update_db run update_db_editors
 ```
 
 Otherwise, you can start the containers directly:

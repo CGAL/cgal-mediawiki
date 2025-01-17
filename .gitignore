@@ -1,6 +1,6 @@
 # .gitignore
 db-data/
-db-init/
+db-dumps/
 caddy-data/
 images/
 composer.override.yml

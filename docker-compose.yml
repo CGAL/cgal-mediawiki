@@ -48,7 +48,7 @@ services:
       - production
       - test
     restart: always
-    volumes: &volumes_mediawiki
+    volumes: &volumes_mediawiki_editors
       - ./LocalSettings-Editors.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
       - ./images:/var/www/html/images
@@ -61,7 +61,7 @@ services:
         condition: service_healthy
 
   db:
-    image: mariadb
+    image: docker.io/library/mariadb
     restart: always
     profiles:
       - update_db
@@ -70,6 +70,7 @@ services:
     environment: *cgal-env
     volumes:
       - ./db-init:/docker-entrypoint-initdb.d
+      - ./db-dumps:/db-dumps
       - db-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
@@ -84,7 +85,7 @@ services:
     entrypoint: caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
     environment:
       <<: *cgal-env
-      CGAL_MEMBERS_PASSWORD:
+      CGAL_MEMBERS_PASSWORD: ${CGAL_MEMBERS_PASSWORD}
     profiles:
       - production
     ports:

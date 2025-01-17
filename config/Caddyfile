@@ -1,12 +1,20 @@
 {
-  debug
-  http_port {$HTTP_PORT}
-  https_port {$HTTPS_PORT}
+	debug
+	http_port {$HTTP_PORT}
+	https_port {$HTTPS_PORT}
 }
 
 {$MW_SITE_FQDN} {
-  basic_auth * bcrypt "CGAL Members" {
-    member1 {$CGAL_MEMBERS_PASSWORD}
-  }
-  reverse_proxy mediawiki:80
+	basic_auth /CGAL/Members bcrypt "CGAL Members" {
+		member1 {$CGAL_MEMBERS_PASSWORD}
+	}
+	basic_auth /CGAL/Editors bcrypt "CGAL Editors" {
+		editor1 {$CGAL_EDITORS_PASSWORD}
+	}
+	reverse_proxy /CGAL/Editors mediawiki_editors:80 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+	}
+	reverse_proxy mediawiki:80 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+	}
 }
