@@ -1,6 +1,5 @@
 {
     "name": "cgal/cgalwiki",
-    "version": "1.0.1",
     "type": "wiki",
     "require": {
         "mediawiki/semantic-media-wiki": "^4.1",
@@ -27,13 +26,6 @@
         "allow-plugins": {
             "composer/installers": true,
             "wikimedia/composer-merge-plugin": true
-        }
-    },
-    "extra": {
-        "merge-plugin": {
-            "include": [
-                "extensions/WikiMarkdown/composer.json"
-            ]
         }
     }
 }

@@ -2,6 +2,11 @@
 
 set -e
 
+DOCKER_HOST=unix:///run/podman/podman.sock
+CONTAINER_HOST=unix:///run/podman/podman.sock
+export DOCKER_HOST
+export CONTAINER_HOST
+
 DB=$(docker ps --filter "name=db" --format "{{.Names}}")
 WIKI_MEMBERS=$(docker ps --filter "name=_mediawiki" --format "{{.Names}}")
 WIKI_EDITORS=$(docker ps --filter "name=_wiki_editors" --format "{{.Names}}")
@@ -40,7 +45,7 @@ freeze
 trap unfreeze EXIT ERR
 
 echo "Backing up wiki database..."
-docker exec "$DB" mariadb-dump -u root -proot mediawiki >./backup/wiki_members_backup_.sql
+docker exec "$DB" mariadb-dump -u root -proot mediawiki >./backup/wiki_members_backup_$(date +%F).sql
 [ -n "$WIKI_EDITORS" ] && docker exec "$DB" mariadb-dump -u root -proot mediawiki-editors >./backup/wiki_editors_backup_$(date +%F).sql
 
 echo "Backing up wiki files..."

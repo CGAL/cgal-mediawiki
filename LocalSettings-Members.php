@@ -63,9 +63,10 @@ $wgLogos = [
 $wgEnableEmail = true;
 $wgEnableUserEmail = true; # UPO
 
-$wgEmergencyContact = "cgal@geometryfactory.com"; # CGAL-EDIT
-$wgPasswordSender = "cgal@geometryfactory.com"; # CGAL-EDIT
+$wgEmergencyContact = "Laurent.Rineau@geometryfactory.com"; # CGAL-EDIT
+$wgPasswordSender = "root@cgal.geometryfactory.com"; # CGAL-EDIT
 $wgPasswordSenderName = "CGAL Developers Wiki Administrator"; # CGAL-EDIT
+$wgReadOnlyFile = "/var/www/lock-mediawiki.txt"; # CGAL-EDIT
 
 ## There are many more options for fine tuning available see
 ## /includes/DefaultSettings.php

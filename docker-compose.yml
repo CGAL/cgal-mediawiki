@@ -17,7 +17,8 @@ x-cgal-env: &cgal-env
   MYSQL_ROOT_PASSWORD: root
   HTTPS_PORT: ${HTTPS_PORT:-8443}
   HTTP_PORT: ${HTTP_PORT:-8080}
-  HTTP_TEST_PORT: ${HTTP_TEST_PORT:-8080}
+  HTTP_TEST_PORT: ${HTTP_TEST_PORT:-8083}
+  HTTP_EDITORS_TEST_PORT: ${HTTP_EDITORS_TEST_PORT:-8084}
 
 services:
   mediawiki_members:
@@ -28,19 +29,19 @@ services:
       - production
       - test
     restart: always
-    volumes: &volumes_mediawiki
+    volumes:
       - ./LocalSettings-Members.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
       - ./images:/var/www/html/images
       - ./config/cgal_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
     environment: *cgal-env
     ports:
-      - "${HTTP_TEST_PORT:-127.0.0.1:8080}:80"
+      - "${HTTP_TEST_PORT:-127.0.0.1:8083}:80"
     depends_on:
       db:
         condition: service_healthy
 
-  mediawiki_editors:
+  wiki_editors:
     build:
       context: .
     image: localhost/cgalmediawiki_mediawiki:latest
@@ -48,14 +49,14 @@ services:
       - production
       - test
     restart: always
-    volumes: &volumes_mediawiki_editors
+    volumes:
       - ./LocalSettings-Editors.php:/var/www/html/LocalSettings.php
       - ./composer.json:/var/www/html/composer.json
       - ./images:/var/www/html/images
       - ./config/cgal_editors_wiki_httpd.conf:/etc/apache2/conf-available/short-url.conf
     environment: *cgal-env
     ports:
-      - "${HTTP_TEST_PORT:-127.0.0.1:8082}:80"
+      - "${HTTP_EDITORS_TEST_PORT:-127.0.0.1:8084}:80"
     depends_on:
       db:
         condition: service_healthy
@@ -97,7 +98,7 @@ services:
       - ./config/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
       - mediawiki_members
-      - mediawiki_editors
+      - wiki_editors
 
   update_db:
     build:

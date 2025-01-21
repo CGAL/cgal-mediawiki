@@ -5,3 +5,6 @@ caddy-data/
 images/
 composer.override.yml
 production-dir/secrtets.env
+backup/
+*.tar
+*.tar.gz

@@ -59,6 +59,7 @@ $wgEnableUserEmail = true; # UPO
 $wgEmergencyContact = "Laurent.Rineau@geometryfactory.com"; # CGAL-EDIT
 $wgPasswordSender = "root@cgal.geometryfactory.com"; # CGAL-EDIT
 $wgPasswordSenderName = "CGAL Developers Wiki Administrator"; # CGAL-EDIT
+$wgReadOnlyFile = "/var/www/lock-mediawiki.txt"; # CGAL-EDIT
 
 ## There are many more options for fine tuning available see
 ## /includes/DefaultSettings.php
@@ -200,8 +201,8 @@ wfLoadExtension( 'DiscussionThreading' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'DismissableSiteNotice' );
 wfLoadExtension( 'WikiMarkdown' );
-$wgAllowMarkdownExtra = true; // allows usage of Parsedown Extra
-#$wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
+// $wgAllowMarkdownExtra = true; // allows usage of Parsedown Extra
+// $wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
 
 # See ConfirmAccount extension below
 $wgGroupPermissions['*'    ]['createaccount']   = true;
@@ -336,3 +337,23 @@ $wgJobRunRate = 10;
 # https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice
 $wgMajorSiteNoticeID = 1;
 $wgDismissableSiteNoticeForAnons = false;
+
+
+if (file_exists("/run/secrets/secrets.php")) {
+	include_once("/run/secrets/secrets.php");
+} else {
+	$CGAL_GEOMETRYFACTORY_COM_PASS = '';
+}
+
+$wgSMTP = [
+	'host'      => 'tls://ssl0.ovh.net', // could also be an IP address. Where the SMTP server is located. If using SSL or TLS, add the prefix "ssl://" or "tls://".
+	// 'IDHost'    => 'example.com',      // Generally this will be the domain name of your website (aka mywiki.org)
+	// 'localhost' => 'example.com',      // Same as IDHost above; required by some mail servers
+	'port'      => 465,                // Port to use when connecting to the SMTP server
+	'auth'      => true,               // Should we use SMTP authentication (true or false)
+	'username'  => 'cgal@geometryfactory.com',     // Username to use for SMTP authentication (if being used)
+	'password'  => "$CGAL_GEOMETRYFACTORY_COM_PASS"       // Password to use for SMTP authentication (if being used)
+    ];
+
+# https://www.mediawiki.org/wiki/Manual:$wgExtraSignatureNamespaces
+$wgExtraSignatureNamespaces = [ NS_MAIN, NS_EDITORS ];
