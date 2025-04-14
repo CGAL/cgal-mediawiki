@@ -1,20 +1,20 @@
 [Unit]
-Requires=cgalmediawiki-mediawiki.service
-After=cgalmediawiki-mediawiki.service
+Requires=cgalmediawiki-test-mediawiki.service
+After=cgalmediawiki-test-mediawiki.service
 
 [Container]
-ContainerName=cgalmediawiki_caddy
+ContainerName=cgalmediawiki_test_caddy
 Image=docker.io/library/caddy:2.8-alpine
 Entrypoint=["/usr/bin/caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
-EnvironmentFile=/etc/CGAL/cgal-mediawiki/production.env
+EnvironmentFile=/etc/CGAL/cgal-mediawiki/production-test.env
 Secret=CGAL_MEMBERS_PASSWORD,type=env
 Secret=CGAL_EDITORS_PASSWORD,type=env
-PublishPort=51.75.82.36:443:443/tcp
-PublishPort=51.75.82.36:443:443/udp
-PublishPort=51.75.82.36:80:80/tcp
-Volume=cgalmediawiki_caddy-data:/data:Z
+PublishPort=54.37.95.216:443:443/tcp
+PublishPort=54.37.95.216:443:443/udp
+PublishPort=54.37.95.216:80:80/tcp
+Volume=cgalmediawiki_test_caddy-data:/data:Z
 Volume=/etc/CGAL/cgal-mediawiki/config/Caddyfile:/etc/caddy/Caddyfile:ro,z
-Network=cgalmediawiki.network
+Network=cgalmediawiki-test.network
 
 [Service]
 Restart=on-failure

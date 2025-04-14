@@ -12,7 +12,7 @@ Volume=/etc/CGAL/cgal-mediawiki/config/cgal_editors_wiki_httpd.conf:/etc/apache2
 Volume=/etc/CGAL/cgal-mediawiki/composer.json:/var/www/html/composer.json:z
 Volume=/etc/CGAL/cgal-mediawiki/lock-mediawiki.txt:/var/www/lock-mediawiki.txt:z
 Volume=cgalmediawiki_editors_images:/var/www/html/images:z
-Network=cgalmediawiki_default
+Network=cgalmediawiki.network
 PodmanArgs=--network-alias=wiki_editors
 Secret=secrets.php
 

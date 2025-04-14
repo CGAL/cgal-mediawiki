@@ -9,7 +9,8 @@ HealthStartPeriod=40s
 HealthTimeout=10s
 Notify=healthy
 Volume=cgalmediawiki_db-data:/var/lib/mysql:Z
-Network=cgalmediawiki_default
+Network=cgalmediawiki.network
+Network=cgalmediawiki-test.network
 PodmanArgs=--network-alias=db
 
 [Service]
