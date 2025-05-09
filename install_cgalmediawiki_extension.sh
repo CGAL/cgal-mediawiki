@@ -5,7 +5,8 @@ echo "Mediawiki version is $MW_VERSION (branch $BRANCH)"
 REPO_BASE="https://gerrit.wikimedia.org/r/mediawiki/extensions"
 EXTENSIONS="VisualEditor PageForms ConfirmAccount Interwiki Renameuser UserMerge MagicNoCache Math ParserFunctions SyntaxHighlight_GeSHi UrlGetParameters DiscussionThreading DismissableSiteNotice"
 
-WIKIMARKDOWN_REPO="https://github.com/kuenzign/WikiMarkdown"
+WIKIMARKDOWN_REPO="https://github.com/lrineau/WikiMarkdown"
+WIKIMARKDOWN_BRANCH=fix-for-mw1.42
 PARSEDOWN_EXTENDED_REPO="https://github.com/BenjaminHoegh/ParsedownExtended"
 
 pushd /var/www/html
@@ -28,7 +29,7 @@ if [ -d "WikiMarkdown" ]; then
     rm -rf "WikiMarkdown"
 fi
 
-git clone --depth 1 "$WIKIMARKDOWN_REPO" WikiMarkdown
+git clone --depth 1 -b "$WIKIMARKDOWN_BRANCH" "$WIKIMARKDOWN_REPO" WikiMarkdown
 
 if [ -d "WikiMarkdown/vendor/parsedown-extended" ]; then
     rm -rf "WikiMarkdown/vendor/parsedown-extended"

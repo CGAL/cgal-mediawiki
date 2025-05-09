@@ -191,7 +191,6 @@ wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'SemanticMediaWiki' );
 enableSemantics( '' );
 wfLoadExtension( 'PageForms' );
-wfLoadExtension( 'SemanticWatchlist' );
 wfLoadExtension( 'ConfirmAccount' );
 wfLoadExtension( 'Interwiki' );
 $wgLocalInterwiki   = $wgSitename;
@@ -208,8 +207,8 @@ wfLoadExtension( 'DiscussionThreading' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'DismissableSiteNotice' );
 wfLoadExtension( 'WikiMarkdown' );
-// $wgAllowMarkdownExtra = true; // allows usage of Parsedown Extra
-// $wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
+$wgAllowMarkdownExtra = true; // allows usage of Parsedown Extra
+$wgAllowMarkdownExtended = true; // allows usage of Parsedown Extended
 
 # See ConfirmAccount extension below
 #$wgGroupPermissions['*'    ]['createaccount']   = true;
