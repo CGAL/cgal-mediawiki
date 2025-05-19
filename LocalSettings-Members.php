@@ -163,7 +163,7 @@ $wgDefaultSkin = "vector-2022"; # CGAL-EDIT
 # Enabled skins.
 # The following skins were automatically enabled:
 #wfLoadSkin( 'MinervaNeue' ); # CGAL-EDIT
-#wfLoadSkin( 'MonoBook' ); # CGAL-EDIT
+wfLoadSkin( 'MonoBook' ); # CGAL-EDIT
 #wfLoadSkin( 'Timeless' ); # CGAL-EDIT
 wfLoadSkin( 'Vector' );
 
@@ -373,3 +373,11 @@ $wgSMTP = [
 
 # https://www.mediawiki.org/wiki/Manual:$wgExtraSignatureNamespaces
 $wgExtraSignatureNamespaces = [ NS_MAIN, NS_EDITORS ];
+
+# https://www.mediawiki.org/wiki/Skin:Vector/2022#Night_mode
+$wgVectorNightMode['beta'] = true;
+$wgVectorNightMode['logged_out'] = true;
+$wgVectorNightMode['logged_in'] = true;
+$wgDefaultUserOptions['vector-theme'] = 'os';
+$wgVectorLanguageInMainPageHeader = false;
+$wgAllowUserJskin = true;
