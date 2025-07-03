@@ -184,7 +184,6 @@ wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'SemanticMediaWiki' );
 enableSemantics( '' );
 wfLoadExtension( 'PageForms' );
-wfLoadExtension( 'SemanticWatchlist' );
 wfLoadExtension( 'ConfirmAccount' );
 wfLoadExtension( 'Interwiki' );
 $wgLocalInterwiki   = $wgSitename;
