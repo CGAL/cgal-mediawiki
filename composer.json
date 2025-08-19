@@ -3,7 +3,7 @@
   "type": "wiki",
   "require": {
     "mediawiki/core": "^1.43",
-    "mediawiki/semantic-media-wiki": "^5.0",
+    "mediawiki/semantic-media-wiki": "^6.0",
     "mediawiki/parser-hooks": "^1.6",
     "data-values/data-values": "^3.1",
     "data-values/interfaces": "^1.0",
