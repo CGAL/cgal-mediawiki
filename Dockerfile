@@ -1,4 +1,4 @@
-ARG MW_VERSION=1.43
+ARG MW_VERSION=1.44
 
 FROM docker.io/library/mediawiki:${MW_VERSION}
 ARG MW_VERSION
