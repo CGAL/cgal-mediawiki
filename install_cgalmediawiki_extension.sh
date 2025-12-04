@@ -1,6 +1,7 @@
 #!/bin/bash
 
 BRANCH="REL${MW_VERSION/./_}"
+BRANCH="${BRANCH%.*}"
 echo "Mediawiki version is $MW_VERSION (branch $BRANCH)"
 REPO_BASE="https://gerrit.wikimedia.org/r/mediawiki/extensions"
 EXTENSIONS="VisualEditor ConfirmAccount Interwiki Renameuser UserMerge MagicNoCache Math ParserFunctions SyntaxHighlight_GeSHi UrlGetParameters DiscussionThreading DismissableSiteNotice"
