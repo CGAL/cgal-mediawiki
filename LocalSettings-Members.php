@@ -189,7 +189,7 @@ wfLoadExtension( 'WikiEditor' );
 
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'SemanticMediaWiki' );
-enableSemantics( '' );
+#enableSemantics( '' );
 wfLoadExtension( 'PageForms' );
 wfLoadExtension( 'ConfirmAccount' );
 wfLoadExtension( 'Interwiki' );
@@ -344,7 +344,7 @@ $wgSVGConverters = array(
 $wgBlockDisablesLogin = true;
 
 # https://semantic-mediawiki.org/wiki/Help:Configuration#smwgQConceptCaching
-$mwgQConceptCaching = CONCEPT_CACHE_NONE;
+#$mwgQConceptCaching = CONCEPT_CACHE_NONE;
 
 # http://www.mediawiki.org/wiki/Manual:Job_queue#Updating_links_tables_when_a_template_changes
 $wgJobRunRate = 10;

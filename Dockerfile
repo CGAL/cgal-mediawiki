@@ -34,6 +34,6 @@ WORKDIR /var/www/html
 COPY composer.local.json ./composer.local.json
 COPY update-context/composer.json ./composer-update.json
 RUN [ -z "${UPDATE}" ] || mv -f ./composer-update.json ./composer.json
-RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --prefer-install=auto --verbose --no-dev
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --prefer-install=auto --verbose --no-dev --optimize-autoloader
 
 ENTRYPOINT ["/usr/local/bin/scriptmediawiki.sh"]

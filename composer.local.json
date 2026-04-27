@@ -2,7 +2,7 @@
   "name": "cgal/cgalwiki",
   "type": "wiki",
   "require": {
-    "mediawiki/semantic-media-wiki": "^6.0",
+    "mediawiki/semantic-media-wiki": "dev-master",
     "mediawiki/parser-hooks": "^1.6",
     "data-values/data-values": "^3.1",
     "data-values/interfaces": "^1.0",

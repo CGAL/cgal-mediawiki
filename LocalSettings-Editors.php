@@ -59,7 +59,8 @@ $wgEnableUserEmail = true; # UPO
 $wgEmergencyContact = "Laurent.Rineau@geometryfactory.com"; # CGAL-EDIT
 $wgPasswordSender = "cgal@geometryfactory.com"; # CGAL-EDIT
 $wgPasswordSenderName = "CGAL Developers Wiki Administrator"; # CGAL-EDIT
-$wgReadOnlyFile = "/var/www/lock-mediawiki.txt"; # CGAL-EDIT
+$wgReadOnly = "This wiki in now in read-only: use https://github.com/CGAL/Editor_wiki instead.";
+#$wgReadOnlyFile = "/var/www/lock-mediawiki.txt"; # CGAL-EDIT
 
 ## There are many more options for fine tuning available see
 ## /includes/DefaultSettings.php
@@ -182,7 +183,7 @@ wfLoadExtension( 'WikiEditor' );
 
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'SemanticMediaWiki' );
-enableSemantics( '' );
+#enableSemantics( '' );
 wfLoadExtension( 'PageForms' );
 wfLoadExtension( 'ConfirmAccount' );
 wfLoadExtension( 'Interwiki' );
@@ -327,7 +328,7 @@ $wgSVGConverters = array(
 $wgBlockDisablesLogin = true;
 
 # https://semantic-mediawiki.org/wiki/Help:Configuration#smwgQConceptCaching
-$mwgQConceptCaching = CONCEPT_CACHE_NONE;
+#$mwgQConceptCaching = CONCEPT_CACHE_NONE;
 
 # http://www.mediawiki.org/wiki/Manual:Job_queue#Updating_links_tables_when_a_template_changes
 $wgJobRunRate = 10;
